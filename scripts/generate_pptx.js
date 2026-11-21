@@ -5,341 +5,405 @@ const fs = require('fs');
 const pptx = new pptxgen();
 pptx.layout = 'LAYOUT_16x9';
 
-const assetsDir = 'D:/Ajmal/POS-Flutter/presentation_assets';
+const assetsDir = path.join(__dirname, '..', 'presentation_assets');
 
-// PowerPoint Slides with real pictures
-const pptSlides = [
+// 29 Modules from Document: https://docs.google.com/document/d/140yyHIc0zm01ZHtG8QVbeWA2wZ_4dBIUuWEgWWhSWgk/edit?tab=t.0
+const docModules = [
   {
-    type: 'cover',
-    title: 'PURPLE KEYS POS',
-    subtitle: 'Next-Generation Enterprise Point-of-Sale Solution',
-    desc: 'Complete Modular Architecture & Operational Workflow Overview for Executive Leadership',
-    stats: [
-      { num: '60 FPS', label: 'Flutter Smooth Touch' },
-      { num: '99.99%', label: 'Offline Uptime SLA' },
-      { num: '< 300ms', label: 'Mixology Recipe Speed' },
-      { num: '0%', label: 'Bar Liquor Leakage' }
-    ]
-  },
-  {
-    title: 'Enterprise Architecture & Data Flow',
-    cat: 'Core Architecture',
-    val: 'Google Flutter 3 with Clean Architecture and an offline-first Hive NoSQL database, ensuring sub-10ms UI responsiveness.',
-    img: 'screen_02_architecture.svg',
-    points: [
-      'Google Flutter 3 Multiplatform engine running across Windows POS terminals and Android/iOS waiter handhelds.',
-      'Embedded Hive NoSQL database caches menus, tables, and orders locally for instantaneous sub-10ms performance.',
-      'ASP.NET Core REST API backed by Oracle database with two-way SignalR WebSockets for real-time synchronization.'
-    ]
-  },
-  {
-    title: 'Operator Sign In & Session Initialization',
+    step: 1,
+    heading: 'Step 1 : LOGIN',
+    img: 'doc_img_01.png',
     cat: 'Security & Auth',
-    val: 'Provides a branded, high-security portal for cashiers and waitstaff to log into shift sessions with cryptographic verification.',
-    img: 'real_01_login.jpg',
-    points: [
-      'Secure token-based JWT authentication preventing credential interception across local and wireless hotel networks.',
-      'Automatically provisions active permissions, default outlet locations, and cashier registers upon sign in.',
-      'Background inactivity watchdog begins monitoring idle time to enforce the 30-minute automated auto-lock guard.'
-    ]
+    explanation: 'Secure operator login portal with cryptographic user ID and password authentication for authorized staff access.'
   },
   {
-    title: 'Location & Departmental Outlet Routing',
-    cat: 'Multi-Store Setup',
-    val: 'Enables operators to dynamically bind sessions to specific revenue centers: Banquet, Barrel Bar, Complimentary, or Home Delivery.',
-    img: 'real_02_location_select.jpg',
-    points: [
-      'Multi-outlet flexibility: Seamlessly switch operations between Banquet (Code: 14), Barrel (Code: 5), and Home Delivery.',
-      'Dedicated inventory depots: Automatically deducts liquor and kitchen stocks from the exact cellar or pantry assigned.',
-      'Location-specific tax rules: Applies tailored fiscal invoice sequences, service charges, and VAT rules.'
-    ]
+    step: 2,
+    heading: 'Step 2: Once logged IN',
+    img: 'doc_img_02.png',
+    cat: 'Outlet Routing',
+    explanation: 'Departmental outlet selection dialog allowing operators to bind their shift session to specific dining areas or bars.'
   },
   {
-    title: 'Interactive Dining Room Table View',
-    cat: 'Dine-In Operations',
-    val: 'Displays the live dining room floor with color-coded table occupancy, running order counts, and rapid keyboard actions.',
-    img: 'real_03_table_view.jpg',
-    points: [
-      'Running OT / KOT Indicators: Highlights tables with active orders (Table 602 with 1 order, Table 502 with 2 orders).',
-      'Available table grid: Displays vacant tables with green indicators (504, 605, 607, 606, 508, 406) ready for seating.',
-      'Complete function key shortcuts: F5 Refresh, Alt+L Location, Alt+O Outlet, Alt+R Reserve, Alt+T Transfer, Alt+M Merge.'
-    ]
+    step: 3,
+    heading: 'Step 3 Dashboard',
+    img: 'doc_img_03.png',
+    cat: 'Floor Management',
+    explanation: 'Interactive dining floor dashboard displaying real-time color-coded table occupancy, running order counts, and rapid keyboard shortcuts.'
   },
   {
-    title: 'High-Throughput Menu Catalog & Speed Ordering',
-    cat: 'Speed Billing',
-    val: 'Engineered for rapid order entry with visual item cards, veg/non-veg tags, quick category tabs, and 1-tap "Save & eBill".',
-    img: 'real_04_menu_catalog.jpg',
-    points: [
-      'Fast category navigation: Instant switching across Appetizer, Beverage, Big Plates, Brandy, Cocktail, and Coffee Shop.',
-      'Sub-10ms shortcode search: Type item codes (#PLPNT, #CPS, #CSN) or names for immediate local Hive retrieval.',
-      'Active order check panel: Displays current order (#57442 Bot no #416), assigned waiter (Anu), and Save & eBill action.'
-    ]
+    step: 4,
+    heading: 'Transfer OT (Full Table Transfer)',
+    img: 'doc_img_04.png',
+    cat: 'Table Operations',
+    explanation: 'Allows seamless transfer of an entire active table\'s orders and KOT tickets from a source table to any available destination table.'
   },
   {
-    title: 'Intelligent Cocktail Builder & Stock Substitution',
-    cat: 'Liquor Control',
-    val: 'Enforces exact liquor portioning, validates cellar inventory, and enables seamless 1-click substitute liquor selection.',
-    img: 'real_06_cocktail_builder.png',
-    points: [
-      'Recipe Master Control: Every cocktail recipe links to exact peg/milliliter requirements in enterprise master tables.',
-      '1-Click Liquor Substitution: When primary liquor is depleted (e.g. Oasis Classic Rum), substitutes are surfaced automatically.',
-      'Zero Bar Stock Variance: Guarantees 100% balance between physical bar bottle volume and POS fiscal sales records.'
-    ]
+    step: 5,
+    heading: 'Transfer OT(Item wise Transfer)',
+    img: 'doc_img_05.png',
+    cat: 'Table Operations',
+    explanation: 'Granular order transfer window enabling staff to select specific items and split quantities across different dining tables.'
   },
   {
-    title: 'Line Item Quantity Modifier & Stock Verification',
-    cat: 'Order Staging',
-    val: 'A dedicated modal dialog providing granular portion control, real-time stock availability verification, and rapid quantity adjustments.',
-    img: 'real_07_item_qty_select.png',
-    points: [
-      'Touch quantity steppers: Ergonomic plus/minus buttons allowing waitstaff to quickly scale quantities for large groups.',
-      'Live stock availability: Displays real-time kitchen availability counts (e.g. Avail: 1), preventing over-ordering exhausted dishes.',
-      '1-Tap selection confirmation: Vibrant confirmation button displaying total selected units for instantaneous check line injection.'
-    ]
+    step: 6,
+    heading: 'MERGE OT',
+    img: 'doc_img_06.png',
+    cat: 'Table Operations',
+    explanation: 'Enables combining multiple active or vacant tables into a single consolidated dining check with custom remarks.'
   },
   {
-    title: 'Customer Selection & Guest Profiling',
-    cat: 'Guest Hospitality',
-    val: 'Facilitates fast guest assignment by searching names or mobile numbers, enrolling new customers, and linking loyalty points.',
-    img: 'real_08_customer_select.jpg',
-    points: [
-      'Instant mobile search: Search across 100+ registered customers in sub-10ms by typing partial phone numbers or guest names.',
-      'Instant new guest enrollment: One-tap "+ Add New" button allows immediate registration of walk-in guests.',
-      'Loyalty & digital invoicing: Links settled checks to customer loyalty points, ledger credits, and digital WhatsApp invoices.'
-    ]
+    step: 7,
+    heading: 'BOT SAVE',
+    img: 'doc_img_07.png',
+    cat: 'Speed Ordering',
+    explanation: 'Speed ordering catalog interface featuring categorized menu navigation, item shortcode search, and one-tap order saving.'
   },
   {
-    title: 'Live Order View & Preparation Status Board',
-    cat: 'Order Tracking',
-    val: 'The centralized operational tracking board displaying active dining orders, OT numbers, assigned waitstaff, and cooking status.',
-    img: 'real_09_order_view_live.png',
-    points: [
-      'Dual Order View / OT View: Switch seamlessly between table-centric order aggregation and granular kitchen ticket streams.',
-      'Elapsed time SLA tracking: Monitors preparation duration (e.g., 15 min elapsed), alerting supervisors to slow dishes.',
-      'Visual status progression: Color-coded lifecycle dots: Not Accepted (Purple), Prep Started (Blue), Serve, and Served.'
-    ]
+    step: 8,
+    heading: 'BOT SAVE (Order Comments)',
+    img: 'doc_img_08.png',
+    cat: 'Speed Ordering',
+    explanation: 'Allows operators to attach customized preparation instructions and kitchen notes directly to individual ordered items or entire tickets.'
   },
   {
-    title: 'Digital KOT Kitchen Dispatch & Chef Control',
-    cat: 'Kitchen Logistics',
-    val: 'Provides an interactive digital Kitchen Order Ticket (KOT) workflow allowing chefs to accept or reject incoming dish tickets.',
-    img: 'real_10_kot_ordered_items.png',
-    points: [
-      'Chef Accept / Reject actions: Direct touch buttons on kitchen screens allow cooks to acknowledge tickets or reject items.',
-      'OT chronological sequence: Displays OT tickets (417, 416, 415, 414, 141) in strict chronological sequence for kitchen fairness.',
-      'Status lifecycle progression: Transitions line items through Not Accepted, Preparation Started, Ready to Serve, and Served.'
-    ]
+    step: 9,
+    heading: 'SAVED ORDERS',
+    img: 'doc_img_09.png',
+    cat: 'Order Register',
+    explanation: 'Central register displaying all active and delivered orders ready for immediate settlement and invoicing.'
   },
   {
-    title: 'Executive Navigation Drawer & System Hub',
-    cat: 'System Hub',
-    val: 'Master navigation drawer providing rapid, slide-out access to all operational hubs: Live View, Reports, Sync, and User Rights.',
-    img: 'real_11_nav_drawer.png',
-    points: [
-      'Operational quick links: Instant 1-tap navigation to Home dashboard, Live order tracking view, and business Reports.',
-      'Customer & loyalty management: Direct launcher for Customer Directory and CRM guest profile management.',
-      '1-Tap offline data sync: Sync Data action manually flushes queued offline orders and updates master catalog data.'
-    ]
+    step: 10,
+    heading: 'Billed with Payment NONE',
+    img: 'doc_img_10.png',
+    cat: 'Billing Status',
+    explanation: 'Flags tables with unbilled orders and prompts cashiers with one-click direct access to final bill processing.'
   },
   {
-    title: 'Orders Register & Delivery Fulfillment',
-    cat: 'Fulfillment & Billing',
-    val: 'Centralized transaction register tracking delivered orders across dining rooms and room service with 1-tap "BILL ORDER" checkout.',
-    img: 'real_12_orders_register.png',
-    points: [
-      'Real-time order register: Displays daily order stream with Order No, Table number, Location, Guest Name, Mobile, and Status.',
-      'Delivered status tracking: Confirms successful dish delivery (e.g. DELIVERED badge) before cashiers finalize billing.',
-      '1-Tap BILL ORDER action: Instant action button opens settlement screen with pre-filled amounts ready for payment collection.'
-    ]
+    step: 11,
+    heading: 'Unsettled Bill View',
+    img: 'doc_img_11.png',
+    cat: 'Audit & Review',
+    explanation: 'Detailed invoice preview window displaying ordered items, tax breakdowns, and pending payment status before final settlement.'
   },
   {
-    title: 'Completed Bills Archive & Fiscal Ledger Audit',
-    cat: 'Fiscal Ledger',
-    val: 'An immutable historical ledger of all settled bills with date/outlet filters, revenue totals, and one-click Excel data export.',
-    img: 'real_13_bills_archive.png',
-    points: [
-      'Comprehensive bill records: Historical invoice log capturing Bill No, Customer Phone, Guest Name, Table, and Payment tender.',
-      'Deep invoice inspection: "VIEW" action opens full itemized invoice breakdown with taxes, discounts, and cashier signature.',
-      'One-click Excel export: Export financial billing ledgers directly to Microsoft Excel for corporate accounting and tax audits.'
-    ]
+    step: 12,
+    heading: 'SETTLING THE UNSETTLED BILL',
+    img: 'doc_img_12.png',
+    cat: 'Audit & Review',
+    explanation: 'Centralized bills audit ledger listing all unsettled transactions with direct actions to edit, view, or settle payments.'
   },
   {
-    title: 'Customer Directory & VIP Milestone CRM',
-    cat: 'CRM & Loyalty',
-    val: 'Hospitality CRM managing registered guest profiles, phone numbers, birthdays, and anniversaries to drive repeat visits.',
-    img: 'real_14_customer_directory.png',
-    points: [
-      'Centralized guest profiles: Maintains comprehensive directory of registered patrons with customer ID, name, phone, and email.',
-      'Milestone tracking (DOB & Anniversary): Records birthdays and wedding anniversaries, enabling staff to prepare complimentary perks.',
-      'Dynamic name & phone search: Search instant guest records in sub-10ms by typing partial phone digits or customer surnames.'
-    ]
+    step: 13,
+    heading: 'EDIT  UnSettled Bill',
+    img: 'doc_img_13.png',
+    cat: 'Bill Modification',
+    explanation: 'Allows updating payment splits, business types, discounts, and parcel charges on an existing open bill.'
   },
   {
-    title: 'Thermal Printer Connection & Peripheral Spooling',
-    cat: 'Hardware Peripherals',
-    val: 'Driverless hardware management supporting USB, Network LAN, ESC/POS thermal printers, and automated OS printer auto-detection.',
-    img: 'real_15_printer_management.png',
-    points: [
-      'Multi-protocol filter tabs: Dedicated panels for USB direct-connected, Network LAN Ethernet, Thermal, and Bluetooth devices.',
-      'Auto-Detect OS Printers: One-tap scan discovers all operating system installed print drivers and raw USB ports automatically.',
-      'Auto-failover spooler: Automatically redirects print jobs to backup receipt printers if paper runs out, avoiding missing orders.'
-    ]
+    step: 14,
+    heading: 'Bill Edit with Tips',
+    img: 'doc_img_14.png',
+    cat: 'Gratuity & Tips',
+    explanation: 'Provides optional gratuity and tip entry with preconfigured percentages or custom amounts attributed to specific staff members.'
   },
   {
-    title: 'User Rights Assignment & RBAC Governance',
-    cat: 'Role Governance',
-    val: 'Strict role-based access control protecting revenue by assigning explicit menu permissions with transaction code mapping per employee.',
-    img: 'real_16_user_rights_rbac.png',
-    points: [
-      'Granular menu access control: Assign or restrict 25+ discrete POS capabilities including Bill Entry, Order View, and Table Merge.',
-      'Transaction code mapping: Each permission maps to formal enterprise transaction codes (e.g., TRNPOS0020, TRNPOS0015).',
-      'Fraud & void elimination: Ensures servers cannot delete items or apply unverified discounts without explicit administrative privileges.'
-    ]
+    step: 15,
+    heading: 'Direct Bill Settling with Multi payment',
+    img: 'doc_img_15.png',
+    cat: 'Payment Checkout',
+    explanation: 'Enables instant checkout from the ordering screen with direct multi-payment method routing and non-chargeable order toggles.'
   },
   {
-    title: 'Executive Strategic Value & ROI Transformation',
-    cat: 'Strategic ROI',
-    val: 'Empowering enterprise hospitality with 30% faster table turnover, 100% bar stock accuracy, and zero revenue leakage.',
-    img: 'screen_17_offline_sync.svg',
-    points: [
-      '30% Faster Table Turnover: Sub-second speed ordering and instant dual KOT/BOT split dispatch maximize peak-hour covers.',
-      '100% Bar Stock Reconciliation: Recipe peg tracking and substitute validation eliminate unauthorized pouring and inventory loss.',
-      '99.99% Offline Operational Uptime: Local Hive NoSQL storage ensures registers and printers never stop working during outages.'
-    ]
+    step: 16,
+    heading: 'Multi Payment Screen',
+    img: 'doc_img_16.png',
+    cat: 'Payment Checkout',
+    explanation: 'Multi-tender payment interface supporting flexible bill splitting across cash, credit cards, UPI, vouchers, and corporate accounts.'
+  },
+  {
+    step: 17,
+    heading: 'Bill View',
+    img: 'doc_img_17.png',
+    cat: 'Settled Receipt',
+    explanation: 'Completed invoice view confirming full payment collection, tender breakdown, and receipt audit details.'
+  },
+  {
+    step: 18,
+    heading: 'Available Themes',
+    img: 'doc_img_18.png',
+    cat: 'Personalization',
+    explanation: 'High-contrast dark mode display option optimizing readability and reducing eye strain for low-light hospitality environments.'
+  },
+  {
+    step: 19,
+    heading: 'Side Menu',
+    img: 'doc_img_19.png',
+    cat: 'Navigation Hub',
+    explanation: 'Global navigation drawer providing instant access to Live View, Reports, Customer Directory, Sync Data, and System Settings.'
+  },
+  {
+    step: 20,
+    heading: 'Normal Mode',
+    img: 'doc_img_20.png',
+    cat: 'Kitchen Monitoring',
+    explanation: 'Live kitchen order overview monitoring active table tickets, elapsed prep times, waiter assignments, and stage summaries.'
+  },
+  {
+    step: 21,
+    heading: 'Triggered',
+    img: 'doc_img_21.png',
+    cat: 'Kitchen Dispatch',
+    explanation: 'Kitchen order ticket inspection dialog allowing kitchen staff to trigger preparation workflows item by item.'
+  },
+  {
+    step: 22,
+    heading: 'Kitchen Screen',
+    img: 'doc_img_22.png',
+    cat: 'Kitchen KOT',
+    explanation: 'Dedicated Kitchen Order Ticket summary queue enabling chefs to accept incoming orders and initiate cooking.'
+  },
+  {
+    step: 23,
+    heading: 'Kitchen Update Status',
+    img: 'doc_img_23.png',
+    cat: 'Kitchen KOT',
+    explanation: 'Interactive kitchen dispatch screen for advancing dish preparation status to ready-to-serve or rejecting line items.'
+  },
+  {
+    step: 24,
+    heading: 'To Serve Items',
+    img: 'doc_img_24.png',
+    cat: 'Service Logistics',
+    explanation: 'Waitstaff notification dashboard summarizing prepared food items that are cooked and awaiting table service.'
+  },
+  {
+    step: 25,
+    heading: 'Serving items :',
+    img: 'doc_img_25.png',
+    cat: 'Service Logistics',
+    explanation: 'Runner confirmation dialog to mark prepared kitchen items as delivered and served to the guest\'s table.'
+  },
+  {
+    step: 26,
+    heading: 'Billing Orders',
+    img: 'doc_img_26.png',
+    cat: 'Checkout Register',
+    explanation: 'Active table order summary displaying served items, tax calculations, and final payment collection buttons.'
+  },
+  {
+    step: 27,
+    heading: 'User Rights Screen',
+    img: 'doc_img_27.png',
+    cat: 'Security & RBAC',
+    explanation: 'Role-based access control interface for assigning granular staff permissions across billing, kitchen views, and table management.'
+  },
+  {
+    step: 28,
+    heading: 'Print management Screen',
+    img: 'doc_img_28.png',
+    cat: 'Hardware & Printers',
+    explanation: 'Comprehensive hardware configuration utility for managing USB, Network LAN, ESC/POS Thermal, and Bluetooth receipt printers.'
+  },
+  {
+    step: 29,
+    heading: 'App Settings Screen',
+    img: 'doc_img_29.png',
+    cat: 'System Preferences',
+    explanation: 'Centralized application preferences screen for theme controls, offline cache management, cloud database sync, and station defaults.'
   }
 ];
 
-pptSlides.forEach((s, idx) => {
-  const slide = pptx.addSlide();
+const totalSlides = 2 + docModules.length; // 31 slides
 
-  if (s.type === 'cover') {
-    // Cover Slide
-    slide.background = { color: '2E0832' };
+// -------------------------------------------------------------
+// SLIDE 1: Cover Slide
+// -------------------------------------------------------------
+const coverSlide = pptx.addSlide();
+coverSlide.background = { color: '2E0832' };
 
-    slide.addShape(pptx.shapes.ROUNDED_RECTANGLE, {
-      x: 0.8, y: 0.8, w: 11.7, h: 5.6,
-      fill: { color: '3B0D40' },
-      line: { color: '7C3AED', width: 2 }
-    });
-
-    slide.addText('PURPLE KEYS POS', {
-      x: 1.2, y: 1.3, w: 10.9, h: 0.8,
-      fontSize: 34, fontFace: 'Arial', color: 'FFFFFF', bold: true, letterSpacing: 2
-    });
-
-    slide.addText(s.subtitle, {
-      x: 1.2, y: 2.1, w: 10.9, h: 0.5,
-      fontSize: 18, fontFace: 'Arial', color: 'C084FC', bold: true
-    });
-
-    slide.addText(s.desc, {
-      x: 1.2, y: 2.7, w: 10.9, h: 0.6,
-      fontSize: 13, fontFace: 'Arial', color: 'E2E8F0'
-    });
-
-    // Stats Grid
-    s.stats.forEach((st, sIdx) => {
-      const xPos = 1.2 + (sIdx * 2.7);
-      slide.addShape(pptx.shapes.ROUNDED_RECTANGLE, {
-        x: xPos, y: 3.7, w: 2.5, h: 1.8,
-        fill: { color: '240529' },
-        line: { color: '7C3AED', width: 1.5 }
-      });
-      slide.addText(st.num, {
-        x: xPos + 0.1, y: 3.9, w: 2.3, h: 0.7,
-        fontSize: 24, fontFace: 'Arial', color: '38BDF8', bold: true, align: 'center'
-      });
-      slide.addText(st.label, {
-        x: xPos + 0.1, y: 4.7, w: 2.3, h: 0.5,
-        fontSize: 11, fontFace: 'Arial', color: 'E2E8F0', align: 'center'
-      });
-    });
-  } else {
-    // Detail Slide
-    slide.background = { color: 'F8FAFC' };
-
-    // Top Header Banner
-    slide.addShape(pptx.shapes.RECTANGLE, {
-      x: 0, y: 0, w: 13.33, h: 1.0,
-      fill: { color: 'FFFFFF' },
-      line: { color: 'E2E8F0', width: 1 }
-    });
-
-    slide.addText(s.cat.toUpperCase(), {
-      x: 0.8, y: 0.15, w: 8.0, h: 0.25,
-      fontSize: 10, fontFace: 'Arial', color: '7C3AED', bold: true
-    });
-
-    slide.addText(s.title, {
-      x: 0.8, y: 0.42, w: 8.0, h: 0.45,
-      fontSize: 20, fontFace: 'Arial', color: '0F172A', bold: true
-    });
-
-    slide.addText(`Slide ${idx + 1} of ${pptSlides.length}`, {
-      x: 10.0, y: 0.35, w: 2.5, h: 0.35,
-      fontSize: 12, fontFace: 'Arial', color: '64748B', bold: true, align: 'right'
-    });
-
-    // Left Column: Embedded Image / Screen Screenshot
-    const imgPath = path.join(assetsDir, s.img);
-    if (fs.existsSync(imgPath)) {
-      slide.addShape(pptx.shapes.ROUNDED_RECTANGLE, {
-        x: 0.8, y: 1.25, w: 5.8, h: 5.5,
-        fill: { color: '0F172A' },
-        line: { color: 'E2E8F0', width: 2 }
-      });
-      slide.addImage({
-        path: imgPath,
-        x: 0.85, y: 1.3, w: 5.7, h: 5.4,
-        sizing: { type: 'contain', w: 5.7, h: 5.4 }
-      });
-    }
-
-    // Right Column: Executive Summary Card & Bullet Points
-    slide.addShape(pptx.shapes.ROUNDED_RECTANGLE, {
-      x: 6.9, y: 1.25, w: 5.6, h: 1.6,
-      fill: { color: 'FFFFFF' },
-      line: { color: '7C3AED', width: 2 }
-    });
-
-    slide.addText('EXECUTIVE BUSINESS VALUE', {
-      x: 7.1, y: 1.35, w: 5.2, h: 0.25,
-      fontSize: 10, fontFace: 'Arial', color: '7C3AED', bold: true
-    });
-
-    slide.addText(s.val, {
-      x: 7.1, y: 1.65, w: 5.2, h: 1.1,
-      fontSize: 12.5, fontFace: 'Arial', color: '1E293B', bold: true
-    });
-
-    // Key Operational Capabilities
-    slide.addShape(pptx.shapes.ROUNDED_RECTANGLE, {
-      x: 6.9, y: 3.05, w: 5.6, h: 3.7,
-      fill: { color: 'FFFFFF' },
-      line: { color: 'E2E8F0', width: 1 }
-    });
-
-    slide.addText('KEY OPERATIONAL CAPABILITIES & SOP', {
-      x: 7.1, y: 3.2, w: 5.2, h: 0.25,
-      fontSize: 10, fontFace: 'Arial', color: '0F172A', bold: true
-    });
-
-    const bulletItems = s.points.map(pt => ({
-      text: pt,
-      options: { fontSize: 11, fontFace: 'Arial', color: '334155', breakLine: true }
-    }));
-
-    slide.addText(bulletItems, {
-      x: 7.1, y: 3.55, w: 5.2, h: 3.0,
-      bullet: { type: 'bullet', code: '25AA' }
-    });
-  }
+coverSlide.addShape(pptx.shapes.ROUNDED_RECTANGLE, {
+  x: 0.8, y: 0.8, w: 11.73, h: 5.9,
+  fill: { color: '3B0D40' },
+  line: { color: '7C3AED', width: 2 }
 });
 
-const outPath = 'D:/Ajmal/POS-Flutter/PurpleKeys_POS_Executive_Presentation.pptx';
+coverSlide.addText('PURPLE KEYS POS', {
+  x: 1.2, y: 1.3, w: 10.9, h: 0.8,
+  fontSize: 34, fontFace: 'Arial', color: 'FFFFFF', bold: true, letterSpacing: 2
+});
+
+coverSlide.addText('Operational System Workflow Presentation', {
+  x: 1.2, y: 2.1, w: 10.9, h: 0.5,
+  fontSize: 20, fontFace: 'Arial', color: 'C084FC', bold: true
+});
+
+coverSlide.addText('Comprehensive Executive Walkthrough of All 29 Production Modules & Operational Procedures', {
+  x: 1.2, y: 2.7, w: 10.9, h: 0.6,
+  fontSize: 13, fontFace: 'Arial', color: 'E2E8F0'
+});
+
+const coverStats = [
+  { num: '29', label: 'Core System Modules' },
+  { num: '100%', label: 'Verified Live Screens' },
+  { num: 'Sub-10ms', label: 'Offline Execution Speed' },
+  { num: '0%', label: 'Revenue Leakage' }
+];
+
+coverStats.forEach((st, sIdx) => {
+  const xPos = 1.2 + (sIdx * 2.75);
+  coverSlide.addShape(pptx.shapes.ROUNDED_RECTANGLE, {
+    x: xPos, y: 3.8, w: 2.55, h: 1.8,
+    fill: { color: '240529' },
+    line: { color: '7C3AED', width: 1.5 }
+  });
+  coverSlide.addText(st.num, {
+    x: xPos + 0.1, y: 4.0, w: 2.35, h: 0.7,
+    fontSize: 24, fontFace: 'Arial', color: '38BDF8', bold: true, align: 'center'
+  });
+  coverSlide.addText(st.label, {
+    x: xPos + 0.1, y: 4.8, w: 2.35, h: 0.5,
+    fontSize: 11, fontFace: 'Arial', color: 'E2E8F0', align: 'center'
+  });
+});
+
+// -------------------------------------------------------------
+// SLIDE 2: Enterprise Platform Directory
+// -------------------------------------------------------------
+const dirSlide = pptx.addSlide();
+dirSlide.background = { color: 'F8FAFC' };
+
+// Top Header
+dirSlide.addShape(pptx.shapes.RECTANGLE, {
+  x: 0, y: 0, w: 13.33, h: 0.9,
+  fill: { color: 'FFFFFF' },
+  line: { color: 'E2E8F0', width: 1 }
+});
+
+dirSlide.addText('ENTERPRISE PLATFORM DIRECTORY', {
+  x: 0.8, y: 0.12, w: 8.0, h: 0.25,
+  fontSize: 10, fontFace: 'Arial', color: '7C3AED', bold: true
+});
+
+dirSlide.addText('29 Verified Real App Modules & Operational Workflows', {
+  x: 0.8, y: 0.38, w: 8.0, h: 0.42,
+  fontSize: 18, fontFace: 'Arial', color: '0F172A', bold: true
+});
+
+dirSlide.addText('Slide 2 of ' + totalSlides, {
+  x: 10.0, y: 0.3, w: 2.5, h: 0.35,
+  fontSize: 12, fontFace: 'Arial', color: '64748B', bold: true, align: 'right'
+});
+
+// Build directory items list in 2 columns
+const col1 = docModules.slice(0, 15);
+const col2 = docModules.slice(15);
+
+const makeDirRows = (items, startX) => {
+  items.forEach((m, i) => {
+    const yPos = 1.1 + (i * 0.39);
+    dirSlide.addShape(pptx.shapes.ROUNDED_RECTANGLE, {
+      x: startX, y: yPos, w: 5.7, h: 0.35,
+      fill: { color: 'FFFFFF' },
+      line: { color: 'E2E8F0', width: 1 }
+    });
+    dirSlide.addText(`#${m.step < 10 ? '0' + m.step : m.step}  ${m.heading}`, {
+      x: startX + 0.15, y: yPos + 0.05, w: 3.8, h: 0.25,
+      fontSize: 9.5, fontFace: 'Arial', color: '0F172A', bold: true
+    });
+    dirSlide.addText(m.cat, {
+      x: startX + 4.0, y: yPos + 0.05, w: 1.5, h: 0.25,
+      fontSize: 8.5, fontFace: 'Arial', color: '7C3AED', align: 'right', bold: true
+    });
+  });
+};
+
+makeDirRows(col1, 0.8);
+makeDirRows(col2, 6.8);
+
+// -------------------------------------------------------------
+// SLIDES 3 TO 31: 29 Module Slides
+// -------------------------------------------------------------
+docModules.forEach((m, idx) => {
+  const slideNum = idx + 3;
+  const slide = pptx.addSlide();
+  slide.background = { color: 'F8FAFC' };
+
+  // Top Header Banner
+  slide.addShape(pptx.shapes.RECTANGLE, {
+    x: 0, y: 0, w: 13.33, h: 1.0,
+    fill: { color: 'FFFFFF' },
+    line: { color: 'E2E8F0', width: 1 }
+  });
+
+  slide.addText(m.cat.toUpperCase(), {
+    x: 0.8, y: 0.15, w: 8.0, h: 0.25,
+    fontSize: 10, fontFace: 'Arial', color: '7C3AED', bold: true
+  });
+
+  slide.addText(m.heading, {
+    x: 0.8, y: 0.42, w: 8.0, h: 0.45,
+    fontSize: 20, fontFace: 'Arial', color: '0F172A', bold: true
+  });
+
+  slide.addText(`Slide ${slideNum} of ${totalSlides} • Module ${m.step} of 29`, {
+    x: 8.8, y: 0.35, w: 3.7, h: 0.35,
+    fontSize: 11, fontFace: 'Arial', color: '64748B', bold: true, align: 'right'
+  });
+
+  // Left Column: Embedded Real Image
+  const imgPath = path.join(assetsDir, m.img);
+  if (fs.existsSync(imgPath)) {
+    slide.addShape(pptx.shapes.ROUNDED_RECTANGLE, {
+      x: 0.8, y: 1.25, w: 7.2, h: 5.6,
+      fill: { color: '0F172A' },
+      line: { color: 'CBD5E1', width: 2 }
+    });
+    slide.addImage({
+      path: imgPath,
+      x: 0.85, y: 1.3, w: 7.1, h: 5.5,
+      sizing: { type: 'contain', w: 7.1, h: 5.5 }
+    });
+  }
+
+  // Right Column: One Sentence Explaining Card
+  slide.addShape(pptx.shapes.ROUNDED_RECTANGLE, {
+    x: 8.3, y: 1.25, w: 4.25, h: 3.2,
+    fill: { color: 'FFFFFF' },
+    line: { color: '7C3AED', width: 2 }
+  });
+
+  slide.addText('MODULE OVERVIEW', {
+    x: 8.6, y: 1.5, w: 3.7, h: 0.3,
+    fontSize: 11, fontFace: 'Arial', color: '7C3AED', bold: true
+  });
+
+  slide.addText(m.explanation, {
+    x: 8.6, y: 1.9, w: 3.7, h: 2.2,
+    fontSize: 13, fontFace: 'Arial', color: '0F172A', lineSpacing: 22
+  });
+
+  // Secondary Metadata Box
+  slide.addShape(pptx.shapes.ROUNDED_RECTANGLE, {
+    x: 8.3, y: 4.65, w: 4.25, h: 2.2,
+    fill: { color: 'F1F5F9' },
+    line: { color: 'E2E8F0', width: 1 }
+  });
+
+  slide.addText('OPERATIONAL CONTEXT', {
+    x: 8.6, y: 4.85, w: 3.7, h: 0.25,
+    fontSize: 10, fontFace: 'Arial', color: '475569', bold: true
+  });
+
+  slide.addText(`• Module: #${m.step < 10 ? '0' + m.step : m.step} in Document Workflow\n• Category: ${m.cat}\n• Interface Asset: ${m.img}`, {
+    x: 8.6, y: 5.2, w: 3.7, h: 1.4,
+    fontSize: 10.5, fontFace: 'Arial', color: '334155', lineSpacing: 20
+  });
+});
+
+const outPath = path.join(__dirname, '..', 'PurpleKeys_POS_Executive_Presentation.pptx');
 pptx.writeFile({ fileName: outPath }).then(() => {
-  console.log(`PowerPoint updated successfully with all real pictures at: ${outPath}`);
+  console.log(`PowerPoint updated successfully with all 29 modules at: ${outPath}`);
 }).catch(err => {
   console.error('Error generating PPTX:', err);
 });
