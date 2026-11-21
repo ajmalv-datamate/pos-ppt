@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 650" width="1000" height="650">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC"/><stop offset="100%" stop-color="#EDF2F7"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  <rect width="1000" height="650" fill="url(#bgGrad)"/>
+  
+  <!-- Terminal Top Bar -->
+  <rect width="1000" height="52" fill="#2E0832"/>
+  <circle cx="28" cy="26" r="8" fill="#A855F7"/>
+  <text x="46" y="32" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="16" letter-spacing="1">PURPLE KEYS POS</text>
+  <text x="500" y="32" fill="#E2E8F0" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="14" text-anchor="middle">ACTIVE ORDER CART & DUAL KOT/BOT DISPATCH</text>
+  <rect x="850" y="14" width="125" height="24" rx="12" fill="#10B981" fill-opacity="0.2"/>
+  <circle cx="864" cy="26" r="4" fill="#10B981"/>
+  <text x="876" y="31" fill="#10B981" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11">ONLINE • v2.0</text>
+
+  <!-- Screen Body -->
+  <g transform="translate(0, 52)">
+    
+    <rect x="60" y="30" width="880" height="510" rx="16" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#cardShadow)"/>
+    <text x="95" y="70" fill="#0F172A" font-family="sans-serif" font-size="18" font-weight="800">ORDER CART • TABLE T-01 (NEW ORDER #4089)</text>
+    <text x="95" y="92" fill="#64748B" font-family="sans-serif" font-size="12">Real-time line item staging, quantity modifiers, and automated split routing</text>
+
+    <!-- Cart Table Header -->
+    <rect x="95" y="115" width="810" height="36" rx="8" fill="#F1F5F9"/>
+    <text x="115" y="138" fill="#475569" font-family="sans-serif" font-size="12" font-weight="800">ITEM DESCRIPTION</text>
+    <text x="460" y="138" fill="#475569" font-family="sans-serif" font-size="12" font-weight="800">ROUTE</text>
+    <text x="560" y="138" fill="#475569" font-family="sans-serif" font-size="12" font-weight="800">PORTION</text>
+    <text x="680" y="138" fill="#475569" font-family="sans-serif" font-size="12" font-weight="800">QTY</text>
+    <text x="880" y="138" fill="#475569" font-family="sans-serif" font-size="12" font-weight="800" text-anchor="end">TOTAL (₹)</text>
+
+    <!-- Cart Lines -->
+    <g transform="translate(95, 175)" font-family="sans-serif" font-size="13" fill="#1E293B">
+      <text x="20" y="0" font-weight="800">Janatha 4 Peg Brandy (240ml)</text>
+      <rect x="360" y="-14" width="60" height="22" rx="4" fill="#F3E8FF"/>
+      <text x="390" y="2" fill="#7C3AED" font-weight="800" font-size="11" text-anchor="middle">BOT</text>
+      <text x="465" y="0">4 Peg / 240ml</text>
+      <text x="585" y="0" font-weight="800">2</text>
+      <text x="785" y="0" font-weight="800" text-anchor="end">600.00</text>
+
+      <line x1="0" y1="20" x2="810" y2="20" stroke="#F1F5F9"/>
+
+      <text x="20" y="45" font-weight="800">MGM Orange 4 Peg Brandy</text>
+      <rect x="360" y="31" width="60" height="22" rx="4" fill="#F3E8FF"/>
+      <text x="390" y="47" fill="#7C3AED" font-weight="800" font-size="11" text-anchor="middle">BOT</text>
+      <text x="465" y="45">4 Peg / 240ml</text>
+      <text x="585" y="45" font-weight="800">1</text>
+      <text x="785" y="45" font-weight="800" text-anchor="end">340.00</text>
+
+      <line x1="0" y1="65" x2="810" y2="65" stroke="#F1F5F9"/>
+
+      <text x="20" y="90" font-weight="800">Crispy Pepper Chicken Dry</text>
+      <rect x="360" y="76" width="60" height="22" rx="4" fill="#ECFDF5"/>
+      <text x="390" y="92" fill="#059669" font-weight="800" font-size="11" text-anchor="middle">KOT</text>
+      <text x="465" y="90">Full Portion</text>
+      <text x="585" y="90" font-weight="800">1</text>
+      <text x="785" y="90" font-weight="800" text-anchor="end">380.00</text>
+
+      <line x1="0" y1="110" x2="810" y2="110" stroke="#F1F5F9"/>
+
+      <text x="20" y="135" font-weight="800">Salted Cashew Nuts</text>
+      <rect x="360" y="121" width="60" height="22" rx="4" fill="#ECFDF5"/>
+      <text x="390" y="137" fill="#059669" font-weight="800" font-size="11" text-anchor="middle">KOT</text>
+      <text x="465" y="135">Snack Bowl</text>
+      <text x="585" y="135" font-weight="800">2</text>
+      <text x="785" y="135" font-weight="800" text-anchor="end">360.00</text>
+    </g>
+
+    <!-- Bottom Buttons -->
+    <rect x="95" y="370" width="380" height="58" rx="12" fill="#7C3AED" filter="url(#cardShadow)"/>
+    <text x="285" y="405" fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="800" text-anchor="middle">SAVE & DISPATCH KOT / BOT 🚀</text>
+
+    <rect x="495" y="370" width="190" height="58" rx="12" fill="#0284C7"/>
+    <text x="590" y="405" fill="#FFFFFF" font-family="sans-serif" font-size="15" font-weight="800" text-anchor="middle">UPDATE OT ↻</text>
+
+    <rect x="705" y="370" width="200" height="58" rx="12" fill="#F8FAFC" stroke="#CBD5E1"/>
+    <text x="805" y="405" fill="#334155" font-family="sans-serif" font-size="15" font-weight="800" text-anchor="middle">HOLD CART ⏸️</text>
+
+    <rect x="95" y="450" width="810" height="55" rx="10" fill="#F0FDF4" stroke="#BBF7D0"/>
+    <text x="120" y="482" fill="#166534" font-family="sans-serif" font-size="12" font-weight="700">Automated Split Logic: Liquor items (BOT) route directly to Bar Station, while Food items (KOT) route to Kitchen Kitchen Display System.</text>
+    
+  </g>
+</svg>

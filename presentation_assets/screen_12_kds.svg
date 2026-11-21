@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 650" width="1000" height="650">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/><stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  <rect width="1000" height="650" fill="url(#bgGrad)"/>
+  
+  <!-- Terminal Top Bar -->
+  <rect width="1000" height="52" fill="#2E0832"/>
+  <circle cx="28" cy="26" r="8" fill="#A855F7"/>
+  <text x="46" y="32" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="16" letter-spacing="1">PURPLE KEYS POS</text>
+  <text x="500" y="32" fill="#E2E8F0" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="14" text-anchor="middle">REAL-TIME KDS & KITCHEN ORDER STREAM</text>
+  <rect x="850" y="14" width="125" height="24" rx="12" fill="#10B981" fill-opacity="0.2"/>
+  <circle cx="864" cy="26" r="4" fill="#10B981"/>
+  <text x="876" y="31" fill="#10B981" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11">ONLINE • v2.0</text>
+
+  <!-- Screen Body -->
+  <g transform="translate(0, 52)">
+    
+    <rect x="50" y="25" width="900" height="520" rx="16" fill="#1E293B" stroke="#334155" filter="url(#cardShadow)"/>
+    <text x="80" y="65" fill="#FFFFFF" font-family="sans-serif" font-size="18" font-weight="800">KITCHEN DISPLAY SYSTEM • ACTIVE DISPATCH QUEUE</text>
+    <text x="80" y="88" fill="#94A3B8" font-family="sans-serif" font-size="12">Direct SignalR WebSocket stream auto-categorizing Food to Chef & Liquor to Bartender.</text>
+
+    <!-- KDS Ticket 1 -->
+    <rect x="80" y="115" width="260" height="380" rx="12" fill="#0F172A" stroke="#EF4444" stroke-width="2"/>
+    <rect x="80" y="115" width="260" height="40" rx="12" fill="#EF4444"/>
+    <text x="95" y="140" fill="#FFFFFF" font-family="sans-serif" font-weight="800" font-size="13">TABLE T-04 • TICKET #104</text>
+    <text x="325" y="140" fill="#FFFFFF" font-family="sans-serif" font-weight="800" font-size="12" text-anchor="end">⏱️ 14:20</text>
+    <g transform="translate(100, 180)" font-family="sans-serif" fill="#E2E8F0" font-size="13">
+      <text y="0" font-weight="800">2x Chicken Biryani (Spicy)</text>
+      <text y="25" fill="#94A3B8" font-size="11">Note: Less oil, extra raita</text>
+      <text y="55" font-weight="800">1x Tandoori Chicken Full</text>
+      <text y="80" fill="#94A3B8" font-size="11">Note: Well cooked</text>
+      <text y="110" font-weight="800">3x Garlic Butter Naan</text>
+    </g>
+    <rect x="100" y="435" width="220" height="38" rx="8" fill="#10B981"/>
+    <text x="210" y="459" fill="#FFFFFF" font-family="sans-serif" font-weight="800" font-size="12" text-anchor="middle">MARK READY ✓</text>
+
+    <!-- KDS Ticket 2 -->
+    <rect x="370" y="115" width="260" height="380" rx="12" fill="#0F172A" stroke="#F59E0B" stroke-width="2"/>
+    <rect x="370" y="115" width="260" height="40" rx="12" fill="#F59E0B"/>
+    <text x="385" y="140" fill="#FFFFFF" font-family="sans-serif" font-weight="800" font-size="13">TABLE T-11 • TICKET #105</text>
+    <text x="615" y="140" fill="#FFFFFF" font-family="sans-serif" font-weight="800" font-size="12" text-anchor="end">⏱️ 06:45</text>
+    <g transform="translate(390, 180)" font-family="sans-serif" fill="#E2E8F0" font-size="13">
+      <text y="0" font-weight="800">1x Dragon Paneer</text>
+      <text y="30" font-weight="800">2x Sweet Corn Chicken Soup</text>
+      <text y="60" font-weight="800">1x Crispy Calamari Rings</text>
+    </g>
+    <rect x="390" y="435" width="220" height="38" rx="8" fill="#0284C7"/>
+    <text x="500" y="459" fill="#FFFFFF" font-family="sans-serif" font-weight="800" font-size="12" text-anchor="middle">PREPARING (CHEF 2)</text>
+
+    <!-- KDS Ticket 3 -->
+    <rect x="660" y="115" width="260" height="380" rx="12" fill="#0F172A" stroke="#7C3AED" stroke-width="2"/>
+    <rect x="660" y="115" width="260" height="40" rx="12" fill="#7C3AED"/>
+    <text x="675" y="140" fill="#FFFFFF" font-family="sans-serif" font-weight="800" font-size="13">BAR BOT • TICKET #B-82</text>
+    <text x="905" y="140" fill="#FFFFFF" font-family="sans-serif" font-weight="800" font-size="12" text-anchor="end">⏱️ 02:10</text>
+    <g transform="translate(680, 180)" font-family="sans-serif" fill="#E2E8F0" font-size="13">
+      <text y="0" font-weight="800">2x Janatha 4 Peg (240ml)</text>
+      <text y="25" fill="#C084FC" font-size="11">Substitute: JANA (Stock OK)</text>
+      <text y="55" font-weight="800">1x Classic LIIT Cocktail</text>
+      <text y="80" fill="#C084FC" font-size="11">Glassware: Highball • Ice: Full</text>
+      <text y="110" font-weight="800">2x Heineken Beer 650ml</text>
+    </g>
+    <rect x="680" y="435" width="220" height="38" rx="8" fill="#10B981"/>
+    <text x="790" y="459" fill="#FFFFFF" font-family="sans-serif" font-weight="800" font-size="12" text-anchor="middle">SERVED BY BARTENDER ✓</text>
+    
+  </g>
+</svg>

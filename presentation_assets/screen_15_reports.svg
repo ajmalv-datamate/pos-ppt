@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 650" width="1000" height="650">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC"/><stop offset="100%" stop-color="#EDF2F7"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  <rect width="1000" height="650" fill="url(#bgGrad)"/>
+  
+  <!-- Terminal Top Bar -->
+  <rect width="1000" height="52" fill="#2E0832"/>
+  <circle cx="28" cy="26" r="8" fill="#A855F7"/>
+  <text x="46" y="32" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="16" letter-spacing="1">PURPLE KEYS POS</text>
+  <text x="500" y="32" fill="#E2E8F0" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="14" text-anchor="middle">OPERATIONAL BI & CATEGORY REVENUE ANALYTICS</text>
+  <rect x="850" y="14" width="125" height="24" rx="12" fill="#10B981" fill-opacity="0.2"/>
+  <circle cx="864" cy="26" r="4" fill="#10B981"/>
+  <text x="876" y="31" fill="#10B981" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11">ONLINE • v2.0</text>
+
+  <!-- Screen Body -->
+  <g transform="translate(0, 52)">
+    
+    <rect x="60" y="30" width="880" height="510" rx="16" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#cardShadow)"/>
+    <text x="95" y="70" fill="#0F172A" font-family="sans-serif" font-size="18" font-weight="800">EXECUTIVE SALES ANALYTICS & HOURLY VELOCITY</text>
+    <text x="95" y="92" fill="#64748B" font-family="sans-serif" font-size="12">Granular margin analysis across Liquor (BOT), Kitchen (KOT), and peak-hour revenue curves</text>
+
+    <!-- Category Bars -->
+    <g transform="translate(95, 130)" font-family="sans-serif" font-size="13">
+      <text y="0" font-weight="800" fill="#0F172A">Liquor Sales (Brandy, Rum, Beer, Cocktails)</text>
+      <text x="750" y="0" font-weight="800" fill="#7C3AED" text-anchor="end">₹92,400 (64.7%)</text>
+      <rect y="12" width="750" height="18" rx="6" fill="#F1F5F9"/>
+      <rect y="12" width="485" height="18" rx="6" fill="#7C3AED"/>
+
+      <text y="60" font-weight="800" fill="#0F172A">Kitchen & Hot Food (Starters, Tandoor, Main Course)</text>
+      <text x="750" y="60" font-weight="800" fill="#0284C7" text-anchor="end">₹42,150 (29.5%)</text>
+      <rect y="72" width="750" height="18" rx="6" fill="#F1F5F9"/>
+      <rect y="72" width="221" height="18" rx="6" fill="#0284C7"/>
+
+      <text y="120" font-weight="800" fill="#0F172A">Beverages, Water & Tobacco</text>
+      <text x="750" y="120" font-weight="800" fill="#10B981" text-anchor="end">₹8,300 (5.8%)</text>
+      <rect y="132" width="750" height="18" rx="6" fill="#F1F5F9"/>
+      <rect y="132" width="44" height="18" rx="6" fill="#10B981"/>
+    </g>
+
+    <!-- Key Metrics 3 Boxes -->
+    <g transform="translate(95, 330)" font-family="sans-serif">
+      <rect x="0" y="0" width="240" height="100" rx="12" fill="#F8FAFC" stroke="#E2E8F0"/>
+      <text x="20" y="32" fill="#64748B" font-size="11" font-weight="700">AVG TICKET SIZE</text>
+      <text x="20" y="65" fill="#0F172A" font-size="22" font-weight="800">₹1,180.00</text>
+      <text x="20" y="85" fill="#10B981" font-size="11" font-weight="700">▲ +8.2% vs last month</text>
+
+      <rect x="270" y="0" width="240" height="100" rx="12" fill="#F8FAFC" stroke="#E2E8F0"/>
+      <text x="20" y="32" fill="#64748B" font-size="11" font-weight="700" transform="translate(270,0)">TABLE TURNOVER</text>
+      <text x="20" y="65" fill="#0F172A" font-size="22" font-weight="800" transform="translate(270,0)">42 mins</text>
+      <text x="20" y="85" fill="#10B981" font-size="11" font-weight="700" transform="translate(270,0)">▼ 14m faster billing</text>
+
+      <rect x="540" y="0" width="240" height="100" rx="12" fill="#F8FAFC" stroke="#E2E8F0"/>
+      <text x="20" y="32" fill="#64748B" font-size="11" font-weight="700" transform="translate(540,0)">TOP SERVER OF DAY</text>
+      <text x="20" y="65" fill="#7C3AED" font-size="20" font-weight="800" transform="translate(540,0)">Rahul M. (₹38.4k)</text>
+      <text x="20" y="85" fill="#64748B" font-size="11" font-weight="600" transform="translate(540,0)">32 checks settled</text>
+    </g>
+
+    <text x="95" y="475" fill="#64748B" font-family="sans-serif" font-size="11" font-weight="500">All metrics calculated from Oracle ERP database ledger. Instant scheduled email reports available for GM and CFO.</text>
+    
+  </g>
+</svg>

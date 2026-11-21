@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 650" width="1000" height="650">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC"/><stop offset="100%" stop-color="#EDF2F7"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  <rect width="1000" height="650" fill="url(#bgGrad)"/>
+  
+  <!-- Terminal Top Bar -->
+  <rect width="1000" height="52" fill="#2E0832"/>
+  <circle cx="28" cy="26" r="8" fill="#A855F7"/>
+  <text x="46" y="32" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="16" letter-spacing="1">PURPLE KEYS POS</text>
+  <text x="500" y="32" fill="#E2E8F0" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="14" text-anchor="middle">ADVANCE TABLE RESERVATION & GUEST PRE-ORDERING</text>
+  <rect x="850" y="14" width="125" height="24" rx="12" fill="#10B981" fill-opacity="0.2"/>
+  <circle cx="864" cy="26" r="4" fill="#10B981"/>
+  <text x="876" y="31" fill="#10B981" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11">ONLINE • v2.0</text>
+
+  <!-- Screen Body -->
+  <g transform="translate(0, 52)">
+    
+    <rect x="60" y="30" width="450" height="510" rx="16" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#cardShadow)"/>
+    <text x="90" y="70" fill="#0F172A" font-family="sans-serif" font-size="18" font-weight="800">RESERVATION DETAILS</text>
+    <text x="90" y="92" fill="#64748B" font-family="sans-serif" font-size="12">Guest Profiling & Seating Coordination</text>
+
+    <g transform="translate(90, 125)" font-family="sans-serif" font-size="13">
+      <text y="0" fill="#64748B">Guest Name:</text>
+      <text y="22" font-weight="800" font-size="16" fill="#0F172A">Mr. Vikram Malhotra (VIP Corporate)</text>
+
+      <text y="60" fill="#64748B">Contact Phone:</text>
+      <text y="82" font-weight="700" fill="#0F172A">+91 98401 23456</text>
+
+      <text y="120" fill="#64748B">Reserved Table & Hall:</text>
+      <text y="142" font-weight="700" fill="#7C3AED">Table T-04 • VIP A/C Lounge (6 Pax)</text>
+
+      <text y="180" fill="#64748B">Arrival Date & Time:</text>
+      <text y="202" font-weight="700" fill="#0F172A">Today • 20:30 hrs (8:30 PM)</text>
+
+      <text y="240" fill="#64748B">Pre-Ordered Cocktails & Food:</text>
+      <text y="262" font-weight="700" fill="#059669">2x Premium Cocktails, 1x Tandoori Platter</text>
+
+      <rect x="0" y="295" width="390" height="45" rx="8" fill="#FEF3C7" stroke="#FDE68A"/>
+      <text x="15" y="322" fill="#92400E" font-weight="700" font-size="12">Special Request: Anniversary celebration cake at 9 PM</text>
+    </g>
+
+    <rect x="540" y="30" width="400" height="510" rx="16" fill="#FFFFFF" stroke="#E2E8F0" filter="url(#cardShadow)"/>
+    <text x="570" y="70" fill="#0F172A" font-family="sans-serif" font-size="18" font-weight="800">TODAY RESERVATION TIMELINE</text>
+    <text x="570" y="92" fill="#64748B" font-family="sans-serif" font-size="12">Active slot allocations & table holding</text>
+
+    <g transform="translate(570, 125)" font-family="sans-serif" font-size="12">
+      <rect x="0" y="0" width="340" height="65" rx="10" fill="#F8FAFC" stroke="#E2E8F0"/>
+      <circle cx="25" cy="32" r="6" fill="#10B981"/>
+      <text x="45" y="25" font-weight="800" fill="#0F172A">19:00 - Dr. Ananya Sen (4 Pax)</text>
+      <text x="45" y="45" fill="#64748B">Table T-02 • SEATED (Order active)</text>
+
+      <rect x="0" y="80" width="340" height="65" rx="10" fill="#EFF6FF" stroke="#BFDBFE"/>
+      <circle cx="25" cy="112" r="6" fill="#3B82F6"/>
+      <text x="45" y="105" font-weight="800" fill="#1E40AF">20:30 - Mr. Vikram Malhotra (6 Pax)</text>
+      <text x="45" y="125" fill="#1E40AF">Table T-04 • CONFIRMED (Pre-ordered)</text>
+
+      <rect x="0" y="160" width="340" height="65" rx="10" fill="#F8FAFC" stroke="#E2E8F0"/>
+      <circle cx="25" cy="192" r="6" fill="#F59E0B"/>
+      <text x="45" y="185" font-weight="800" fill="#0F172A">21:15 - Rajesh Kumar (8 Pax)</text>
+      <text x="45" y="205" fill="#64748B">Table T-07 • HOLDING 15 MINS</text>
+    </g>
+
+    <rect x="570" y="380" width="340" height="55" rx="10" fill="#7C3AED"/>
+    <text x="740" y="414" fill="#FFFFFF" font-family="sans-serif" font-size="15" font-weight="800" text-anchor="middle">+ NEW RESERVATION ENTRY</text>
+    
+  </g>
+</svg>
