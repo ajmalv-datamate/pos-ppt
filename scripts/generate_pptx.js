@@ -7,7 +7,8 @@ pptx.layout = 'LAYOUT_16x9';
 
 const assetsDir = path.join(__dirname, '..', 'presentation_assets');
 
-// 29 Modules from Document: https://docs.google.com/document/d/140yyHIc0zm01ZHtG8QVbeWA2wZ_4dBIUuWEgWWhSWgk/edit?tab=t.0
+// 29 Modules reordered as requested:
+// Screens 1 to 6, then Screens 20 to 26, then Screens 7 to 19, then Screens 27 to 29
 const docModules = [
   {
     step: 1,
@@ -20,8 +21,8 @@ const docModules = [
     step: 2,
     heading: 'Step 2: Once logged IN',
     img: 'doc_img_02.png',
-    cat: 'Outlet Routing',
-    explanation: 'Departmental outlet selection dialog allowing operators to bind their shift session to specific dining areas or bars.'
+    cat: 'Location Selection',
+    explanation: 'Departmental location selection dialog allowing operators to bind their shift session to specific dining areas or bars.'
   },
   {
     step: 3,
@@ -51,146 +52,149 @@ const docModules = [
     cat: 'Table Operations',
     explanation: 'Enables combining multiple active or vacant tables into a single consolidated dining check with custom remarks.'
   },
+  // Screens 20 to 26 moved here after Screen 6
   {
     step: 7,
-    heading: 'BOT SAVE',
-    img: 'doc_img_07.png',
-    cat: 'Speed Ordering',
-    explanation: 'Speed ordering catalog interface featuring categorized menu navigation, item shortcode search, and one-tap order saving.'
-  },
-  {
-    step: 8,
-    heading: 'BOT SAVE (Order Comments)',
-    img: 'doc_img_08.png',
-    cat: 'Speed Ordering',
-    explanation: 'Allows operators to attach customized preparation instructions and kitchen notes directly to individual ordered items or entire tickets.'
-  },
-  {
-    step: 9,
-    heading: 'SAVED ORDERS',
-    img: 'doc_img_09.png',
-    cat: 'Order Register',
-    explanation: 'Central register displaying all active and delivered orders ready for immediate settlement and invoicing.'
-  },
-  {
-    step: 10,
-    heading: 'Billed with Payment NONE',
-    img: 'doc_img_10.png',
-    cat: 'Billing Status',
-    explanation: 'Flags tables with unbilled orders and prompts cashiers with one-click direct access to final bill processing.'
-  },
-  {
-    step: 11,
-    heading: 'Unsettled Bill View',
-    img: 'doc_img_11.png',
-    cat: 'Audit & Review',
-    explanation: 'Detailed invoice preview window displaying ordered items, tax breakdowns, and pending payment status before final settlement.'
-  },
-  {
-    step: 12,
-    heading: 'SETTLING THE UNSETTLED BILL',
-    img: 'doc_img_12.png',
-    cat: 'Audit & Review',
-    explanation: 'Centralized bills audit ledger listing all unsettled transactions with direct actions to edit, view, or settle payments.'
-  },
-  {
-    step: 13,
-    heading: 'EDIT  UnSettled Bill',
-    img: 'doc_img_13.png',
-    cat: 'Bill Modification',
-    explanation: 'Allows updating payment splits, business types, discounts, and parcel charges on an existing open bill.'
-  },
-  {
-    step: 14,
-    heading: 'Bill Edit with Tips',
-    img: 'doc_img_14.png',
-    cat: 'Gratuity & Tips',
-    explanation: 'Provides optional gratuity and tip entry with preconfigured percentages or custom amounts attributed to specific staff members.'
-  },
-  {
-    step: 15,
-    heading: 'Direct Bill Settling with Multi payment',
-    img: 'doc_img_15.png',
-    cat: 'Payment Checkout',
-    explanation: 'Enables instant checkout from the ordering screen with direct multi-payment method routing and non-chargeable order toggles.'
-  },
-  {
-    step: 16,
-    heading: 'Multi Payment Screen',
-    img: 'doc_img_16.png',
-    cat: 'Payment Checkout',
-    explanation: 'Multi-tender payment interface supporting flexible bill splitting across cash, credit cards, UPI, vouchers, and corporate accounts.'
-  },
-  {
-    step: 17,
-    heading: 'Bill View',
-    img: 'doc_img_17.png',
-    cat: 'Settled Receipt',
-    explanation: 'Completed invoice view confirming full payment collection, tender breakdown, and receipt audit details.'
-  },
-  {
-    step: 18,
-    heading: 'Available Themes',
-    img: 'doc_img_18.png',
-    cat: 'Personalization',
-    explanation: 'High-contrast dark mode display option optimizing readability and reducing eye strain for low-light hospitality environments.'
-  },
-  {
-    step: 19,
-    heading: 'Side Menu',
-    img: 'doc_img_19.png',
-    cat: 'Navigation Hub',
-    explanation: 'Global navigation drawer providing instant access to Live View, Reports, Customer Directory, Sync Data, and System Settings.'
-  },
-  {
-    step: 20,
     heading: 'Normal Mode',
     img: 'doc_img_20.png',
     cat: 'Kitchen Monitoring',
     explanation: 'Live kitchen order overview monitoring active table tickets, elapsed prep times, waiter assignments, and stage summaries.'
   },
   {
-    step: 21,
+    step: 8,
     heading: 'Triggered',
     img: 'doc_img_21.png',
     cat: 'Kitchen Dispatch',
     explanation: 'Kitchen order ticket inspection dialog allowing kitchen staff to trigger preparation workflows item by item.'
   },
   {
-    step: 22,
+    step: 9,
     heading: 'Kitchen Screen',
     img: 'doc_img_22.png',
     cat: 'Kitchen KOT',
     explanation: 'Dedicated Kitchen Order Ticket summary queue enabling chefs to accept incoming orders and initiate cooking.'
   },
   {
-    step: 23,
+    step: 10,
     heading: 'Kitchen Update Status',
     img: 'doc_img_23.png',
     cat: 'Kitchen KOT',
     explanation: 'Interactive kitchen dispatch screen for advancing dish preparation status to ready-to-serve or rejecting line items.'
   },
   {
-    step: 24,
+    step: 11,
     heading: 'To Serve Items',
     img: 'doc_img_24.png',
     cat: 'Service Logistics',
     explanation: 'Waitstaff notification dashboard summarizing prepared food items that are cooked and awaiting table service.'
   },
   {
-    step: 25,
+    step: 12,
     heading: 'Serving items :',
     img: 'doc_img_25.png',
     cat: 'Service Logistics',
     explanation: 'Runner confirmation dialog to mark prepared kitchen items as delivered and served to the guest\'s table.'
   },
   {
-    step: 26,
+    step: 13,
     heading: 'Billing Orders',
     img: 'doc_img_26.png',
     cat: 'Checkout Register',
     explanation: 'Active table order summary displaying served items, tax calculations, and final payment collection buttons.'
   },
+  // Screens 7 to 19 continue here
+  {
+    step: 14,
+    heading: 'BOT SAVE',
+    img: 'doc_img_07.png',
+    cat: 'Speed Ordering',
+    explanation: 'Speed ordering catalog interface featuring categorized menu navigation, item shortcode search, and one-tap order saving.'
+  },
+  {
+    step: 15,
+    heading: 'BOT SAVE (Order Comments)',
+    img: 'doc_img_08.png',
+    cat: 'Speed Ordering',
+    explanation: 'Allows operators to attach customized preparation instructions and kitchen notes directly to individual ordered items or entire tickets.'
+  },
+  {
+    step: 16,
+    heading: 'SAVED ORDERS',
+    img: 'doc_img_09.png',
+    cat: 'Order Register',
+    explanation: 'Central register displaying all active and delivered orders ready for immediate settlement and invoicing.'
+  },
+  {
+    step: 17,
+    heading: 'Billed with Payment NONE',
+    img: 'doc_img_10.png',
+    cat: 'Billing Status',
+    explanation: 'Flags tables with unbilled orders and prompts cashiers with one-click direct access to final bill processing.'
+  },
+  {
+    step: 18,
+    heading: 'Unsettled Bill View',
+    img: 'doc_img_11.png',
+    cat: 'Audit & Review',
+    explanation: 'Detailed invoice preview window displaying ordered items, tax breakdowns, and pending payment status before final settlement.'
+  },
+  {
+    step: 19,
+    heading: 'SETTLING THE UNSETTLED BILL',
+    img: 'doc_img_12.png',
+    cat: 'Audit & Review',
+    explanation: 'Centralized bills audit ledger listing all unsettled transactions with direct actions to edit, view, or settle payments.'
+  },
+  {
+    step: 20,
+    heading: 'EDIT  UnSettled Bill',
+    img: 'doc_img_13.png',
+    cat: 'Bill Modification',
+    explanation: 'Allows updating payment splits, business types, discounts, and parcel charges on an existing open bill.'
+  },
+  {
+    step: 21,
+    heading: 'Bill Edit with Tips',
+    img: 'doc_img_14.png',
+    cat: 'Gratuity & Tips',
+    explanation: 'Provides optional gratuity and tip entry with preconfigured percentages or custom amounts attributed to specific staff members.'
+  },
+  {
+    step: 22,
+    heading: 'Direct Bill Settling with Multi payment',
+    img: 'doc_img_15.png',
+    cat: 'Payment Checkout',
+    explanation: 'Enables instant checkout from the ordering screen with direct multi-payment method routing and non-chargeable order toggles.'
+  },
+  {
+    step: 23,
+    heading: 'Multi Payment Screen',
+    img: 'doc_img_16.png',
+    cat: 'Payment Checkout',
+    explanation: 'Multi-tender payment interface supporting flexible bill splitting across cash, credit cards, UPI, vouchers, and corporate accounts.'
+  },
+  {
+    step: 24,
+    heading: 'Bill View',
+    img: 'doc_img_17.png',
+    cat: 'Settled Receipt',
+    explanation: 'Completed invoice view confirming full payment collection, tender breakdown, and receipt audit details.'
+  },
+  {
+    step: 25,
+    heading: 'Available Themes',
+    img: 'doc_img_18.png',
+    cat: 'Personalization',
+    explanation: 'High-contrast dark mode display option optimizing readability and reducing eye strain for low-light hospitality environments.'
+  },
+  {
+    step: 26,
+    heading: 'Side Menu',
+    img: 'doc_img_19.png',
+    cat: 'Navigation Hub',
+    explanation: 'Global navigation drawer providing instant access to Live View, Reports, Customer Directory, Sync Data, and System Settings.'
+  },
+  // Screens 27 to 29
   {
     step: 27,
     heading: 'User Rights Screen',
@@ -395,7 +399,7 @@ docModules.forEach((m, idx) => {
     fontSize: 10, fontFace: 'Arial', color: '475569', bold: true
   });
 
-  slide.addText(`• Module: #${m.step < 10 ? '0' + m.step : m.step} in Document Workflow\n• Category: ${m.cat}\n• Interface Asset: ${m.img}`, {
+  slide.addText(`• Module: #${m.step < 10 ? '0' + m.step : m.step} in Operational Workflow\n• Category: ${m.cat}\n• Interface Asset: ${m.img}`, {
     x: 8.6, y: 5.2, w: 3.7, h: 1.4,
     fontSize: 10.5, fontFace: 'Arial', color: '334155', lineSpacing: 20
   });
@@ -403,7 +407,7 @@ docModules.forEach((m, idx) => {
 
 const outPath = path.join(__dirname, '..', 'PurpleKeys_POS_Executive_Presentation.pptx');
 pptx.writeFile({ fileName: outPath }).then(() => {
-  console.log(`PowerPoint updated successfully with all 29 modules at: ${outPath}`);
+  console.log(`PowerPoint updated successfully with reordered modules at: ${outPath}`);
 }).catch(err => {
   console.error('Error generating PPTX:', err);
 });

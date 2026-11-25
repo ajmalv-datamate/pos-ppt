@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-// 29 Modules from Document: https://docs.google.com/document/d/140yyHIc0zm01ZHtG8QVbeWA2wZ_4dBIUuWEgWWhSWgk/edit?tab=t.0
+// 29 Modules reordered as requested:
+// Screens 1 to 6, then Screens 20 to 26, then Screens 7 to 19, then Screens 27 to 29
 const docModules = [
   {
     step: 1,
@@ -15,9 +16,9 @@ const docModules = [
     step: 2,
     heading: 'Step 2: Once logged IN',
     img: 'presentation_assets/doc_img_02.png',
-    cat: 'Outlet Routing',
+    cat: 'Location Selection',
     icon: '🏢',
-    explanation: 'Departmental outlet selection dialog allowing operators to bind their shift session to specific dining areas or bars.'
+    explanation: 'Departmental location selection dialog allowing operators to bind their shift session to specific dining areas or bars.'
   },
   {
     step: 3,
@@ -51,8 +52,66 @@ const docModules = [
     icon: '👥',
     explanation: 'Enables combining multiple active or vacant tables into a single consolidated dining check with custom remarks.'
   },
+  // Screens 20 to 26 moved here after Screen 6
   {
     step: 7,
+    heading: 'Normal Mode',
+    img: 'presentation_assets/doc_img_20.png',
+    cat: 'Kitchen Monitoring',
+    icon: '⏱️',
+    explanation: 'Live kitchen order overview monitoring active table tickets, elapsed prep times, waiter assignments, and stage summaries.'
+  },
+  {
+    step: 8,
+    heading: 'Triggered',
+    img: 'presentation_assets/doc_img_21.png',
+    cat: 'Kitchen Dispatch',
+    icon: '🔔',
+    explanation: 'Kitchen order ticket inspection dialog allowing kitchen staff to trigger preparation workflows item by item.'
+  },
+  {
+    step: 9,
+    heading: 'Kitchen Screen',
+    img: 'presentation_assets/doc_img_22.png',
+    cat: 'Kitchen KOT',
+    icon: '👨‍🍳',
+    explanation: 'Dedicated Kitchen Order Ticket summary queue enabling chefs to accept incoming orders and initiate cooking.'
+  },
+  {
+    step: 10,
+    heading: 'Kitchen Update Status',
+    img: 'presentation_assets/doc_img_23.png',
+    cat: 'Kitchen KOT',
+    icon: '🍳',
+    explanation: 'Interactive kitchen dispatch screen for advancing dish preparation status to ready-to-serve or rejecting line items.'
+  },
+  {
+    step: 11,
+    heading: 'To Serve Items',
+    img: 'presentation_assets/doc_img_24.png',
+    cat: 'Service Logistics',
+    icon: '🛎️',
+    explanation: 'Waitstaff notification dashboard summarizing prepared food items that are cooked and awaiting table service.'
+  },
+  {
+    step: 12,
+    heading: 'Serving items :',
+    img: 'presentation_assets/doc_img_25.png',
+    cat: 'Service Logistics',
+    icon: '🍱',
+    explanation: 'Runner confirmation dialog to mark prepared kitchen items as delivered and served to the guest\'s table.'
+  },
+  {
+    step: 13,
+    heading: 'Billing Orders',
+    img: 'presentation_assets/doc_img_26.png',
+    cat: 'Checkout Register',
+    icon: '💰',
+    explanation: 'Active table order summary displaying served items, tax calculations, and final payment collection buttons.'
+  },
+  // Screens 7 to 19 continue here
+  {
+    step: 14,
     heading: 'BOT SAVE',
     img: 'presentation_assets/doc_img_07.png',
     cat: 'Speed Ordering',
@@ -60,7 +119,7 @@ const docModules = [
     explanation: 'Speed ordering catalog interface featuring categorized menu navigation, item shortcode search, and one-tap order saving.'
   },
   {
-    step: 8,
+    step: 15,
     heading: 'BOT SAVE (Order Comments)',
     headingDoc: 'BOT SAVE',
     img: 'presentation_assets/doc_img_08.png',
@@ -69,7 +128,7 @@ const docModules = [
     explanation: 'Allows operators to attach customized preparation instructions and kitchen notes directly to individual ordered items or entire tickets.'
   },
   {
-    step: 9,
+    step: 16,
     heading: 'SAVED ORDERS',
     img: 'presentation_assets/doc_img_09.png',
     cat: 'Order Register',
@@ -77,7 +136,7 @@ const docModules = [
     explanation: 'Central register displaying all active and delivered orders ready for immediate settlement and invoicing.'
   },
   {
-    step: 10,
+    step: 17,
     heading: 'Billed with Payment NONE',
     img: 'presentation_assets/doc_img_10.png',
     cat: 'Billing Status',
@@ -85,7 +144,7 @@ const docModules = [
     explanation: 'Flags tables with unbilled orders and prompts cashiers with one-click direct access to final bill processing.'
   },
   {
-    step: 11,
+    step: 18,
     heading: 'Unsettled Bill View',
     img: 'presentation_assets/doc_img_11.png',
     cat: 'Audit & Review',
@@ -93,7 +152,7 @@ const docModules = [
     explanation: 'Detailed invoice preview window displaying ordered items, tax breakdowns, and pending payment status before final settlement.'
   },
   {
-    step: 12,
+    step: 19,
     heading: 'SETTLING THE UNSETTLED BILL',
     img: 'presentation_assets/doc_img_12.png',
     cat: 'Audit & Review',
@@ -101,7 +160,7 @@ const docModules = [
     explanation: 'Centralized bills audit ledger listing all unsettled transactions with direct actions to edit, view, or settle payments.'
   },
   {
-    step: 13,
+    step: 20,
     heading: 'EDIT  UnSettled Bill',
     img: 'presentation_assets/doc_img_13.png',
     cat: 'Bill Modification',
@@ -109,7 +168,7 @@ const docModules = [
     explanation: 'Allows updating payment splits, business types, discounts, and parcel charges on an existing open bill.'
   },
   {
-    step: 14,
+    step: 21,
     heading: 'Bill Edit with Tips',
     img: 'presentation_assets/doc_img_14.png',
     cat: 'Gratuity & Tips',
@@ -117,7 +176,7 @@ const docModules = [
     explanation: 'Provides optional gratuity and tip entry with preconfigured percentages or custom amounts attributed to specific staff members.'
   },
   {
-    step: 15,
+    step: 22,
     heading: 'Direct Bill Settling with Multi payment',
     img: 'presentation_assets/doc_img_15.png',
     cat: 'Payment Checkout',
@@ -125,7 +184,7 @@ const docModules = [
     explanation: 'Enables instant checkout from the ordering screen with direct multi-payment method routing and non-chargeable order toggles.'
   },
   {
-    step: 16,
+    step: 23,
     heading: 'Multi Payment Screen',
     img: 'presentation_assets/doc_img_16.png',
     cat: 'Payment Checkout',
@@ -133,7 +192,7 @@ const docModules = [
     explanation: 'Multi-tender payment interface supporting flexible bill splitting across cash, credit cards, UPI, vouchers, and corporate accounts.'
   },
   {
-    step: 17,
+    step: 24,
     heading: 'Bill View',
     img: 'presentation_assets/doc_img_17.png',
     cat: 'Settled Receipt',
@@ -141,7 +200,7 @@ const docModules = [
     explanation: 'Completed invoice view confirming full payment collection, tender breakdown, and receipt audit details.'
   },
   {
-    step: 18,
+    step: 25,
     heading: 'Available Themes',
     img: 'presentation_assets/doc_img_18.png',
     cat: 'Personalization',
@@ -149,69 +208,14 @@ const docModules = [
     explanation: 'High-contrast dark mode display option optimizing readability and reducing eye strain for low-light hospitality environments.'
   },
   {
-    step: 19,
+    step: 26,
     heading: 'Side Menu',
     img: 'presentation_assets/doc_img_19.png',
     cat: 'Navigation Hub',
     icon: '📂',
     explanation: 'Global navigation drawer providing instant access to Live View, Reports, Customer Directory, Sync Data, and System Settings.'
   },
-  {
-    step: 20,
-    heading: 'Normal Mode',
-    img: 'presentation_assets/doc_img_20.png',
-    cat: 'Kitchen Monitoring',
-    icon: '⏱️',
-    explanation: 'Live kitchen order overview monitoring active table tickets, elapsed prep times, waiter assignments, and stage summaries.'
-  },
-  {
-    step: 21,
-    heading: 'Triggered',
-    img: 'presentation_assets/doc_img_21.png',
-    cat: 'Kitchen Dispatch',
-    icon: '🔔',
-    explanation: 'Kitchen order ticket inspection dialog allowing kitchen staff to trigger preparation workflows item by item.'
-  },
-  {
-    step: 22,
-    heading: 'Kitchen Screen',
-    img: 'presentation_assets/doc_img_22.png',
-    cat: 'Kitchen KOT',
-    icon: '👨‍🍳',
-    explanation: 'Dedicated Kitchen Order Ticket summary queue enabling chefs to accept incoming orders and initiate cooking.'
-  },
-  {
-    step: 23,
-    heading: 'Kitchen Update Status',
-    img: 'presentation_assets/doc_img_23.png',
-    cat: 'Kitchen KOT',
-    icon: '🍳',
-    explanation: 'Interactive kitchen dispatch screen for advancing dish preparation status to ready-to-serve or rejecting line items.'
-  },
-  {
-    step: 24,
-    heading: 'To Serve Items',
-    img: 'presentation_assets/doc_img_24.png',
-    cat: 'Service Logistics',
-    icon: '🛎️',
-    explanation: 'Waitstaff notification dashboard summarizing prepared food items that are cooked and awaiting table service.'
-  },
-  {
-    step: 25,
-    heading: 'Serving items :',
-    img: 'presentation_assets/doc_img_25.png',
-    cat: 'Service Logistics',
-    icon: '🍱',
-    explanation: 'Runner confirmation dialog to mark prepared kitchen items as delivered and served to the guest\'s table.'
-  },
-  {
-    step: 26,
-    heading: 'Billing Orders',
-    img: 'presentation_assets/doc_img_26.png',
-    cat: 'Checkout Register',
-    icon: '💰',
-    explanation: 'Active table order summary displaying served items, tax calculations, and final payment collection buttons.'
-  },
+  // Screens 27 to 29
   {
     step: 27,
     heading: 'User Rights Screen',
@@ -1160,4 +1164,4 @@ function buildHtml() {
 // Generate index.html in the current repository
 const htmlOutput = buildHtml();
 fs.writeFileSync(path.join(__dirname, '..', 'index.html'), htmlOutput, 'utf8');
-console.log('Successfully generated index.html with all 29 modules and one sentence explanations!');
+console.log('Successfully generated index.html with reordered modules and updated Step 2 text!');
